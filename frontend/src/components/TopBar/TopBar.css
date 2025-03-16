@@ -1,0 +1,47 @@
+.topbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #ff7b00; /* Maintains yellow color */
+  padding: 15px 20px;
+  color: white;
+}
+
+.admin-icon {
+  color: white;
+  font-size: 18px;
+  text-decoration: none;
+  margin-right: 5px; /* Reduced gap between plus sign and logo */
+  transition: transform 0.2s ease-in-out;
+}
+
+.admin-icon:hover {
+  transform: scale(1.2);
+}
+
+.plus-icon {
+  font-size: 24px;
+}
+
+.topbar-logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  flex-grow: 1;
+  text-align: left; /* Aligns logo to the left */
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 15px;
+}
+
+.topbar-link {
+  text-decoration: none;
+  color: white;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.topbar-link:hover {
+  color: #f1f1f1;
+}

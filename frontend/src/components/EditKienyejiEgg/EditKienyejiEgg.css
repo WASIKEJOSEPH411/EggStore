@@ -1,0 +1,47 @@
+.edit-kienyeji-egg-container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    color: #ff9800;
+    margin-bottom: 15px;
+  }
+  
+  .edit-kienyeji-egg-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .edit-kienyeji-egg-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .edit-kienyeji-egg-form input,
+  .edit-kienyeji-egg-form textarea {
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .edit-btn {
+    background-color: #ff9800;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .edit-btn:hover {
+    background-color: #e68900;
+  }
+  

@@ -1,0 +1,59 @@
+.admin-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.plus-button {
+  font-size: 24px;
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button {
+  cursor: pointer;
+}
+
+.close-button {
+  background: red;
+  color: white;
+  padding: 10px;
+  border: none;
+  margin-top: 10px;
+}
+
+.admin-dashboard {
+  margin-top: 20px;
+  padding: 20px;
+  background: #f1f1f1;
+  border-radius: 10px;
+}
