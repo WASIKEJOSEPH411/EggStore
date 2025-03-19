@@ -31,7 +31,7 @@ function App() {
         <Route path="/addkienyejiegg" element={<AddKienyejiEgg />} />
         <Route path="/chickenproduct" element={<ChickenProduct />} />
         <Route path="/drinks" element={<Drinks />} />
-        <Route path="/editchickenproduct" element={<EditChickenProduct />} />
+        <Route path="/editchickenproduct/:id" element={<EditChickenProduct />} />
         <Route path="/editdrinks" element={<EditDrinks />} />
         <Route path="/editgradeegg" element={<EditGradeEgg />} />
         <Route path="/editkienyejiegg" element={<EditKienyejiEgg />} />
@@ -39,10 +39,7 @@ function App() {
         <Route path="/kienyejiegg" element={<KienyejiEgg/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin-login" element={<AdminLogin/>}/>
-
         <Route path="/adminchikenlisting" element={<AdminChickenListing/>}/>
-
-        
       </Routes>
     </Router>
   );

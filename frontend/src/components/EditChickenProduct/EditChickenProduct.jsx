@@ -7,6 +7,7 @@ import "./EditChickenProduct.css";
 const EditChickenProduct = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const productState = location.product;
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -21,27 +22,31 @@ const EditChickenProduct = () => {
 
   // Fetch product details on mount
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const response = await axios.get(`http://localhost:5000/addchickenproduct/chicken/${id}`);
-        const product = response.data;
-        setEditedProduct({
-          name: product.name,
-          price: product.price,
-          category: product.category,
-          available: product.available,
-          quantity: product.quantity,
-          description: product.description,
-        });
-      } catch (error) {
-        console.error("Error fetching product:", error);
-        setError("Failed to load product details.");
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProduct();
-  }, [id]);
+    if (productState) {
+      setEditedProduct({
+        name: productState.name || "",
+        price: productState.price || "",
+        category: productState.category || "",
+        available: productState.available || false,
+        quantity: productState.quantity || "",
+        description: productState.description || "",
+        img: productState.img || "",
+      });
+      setLoading(false);
+    } else {
+      // Fallback: Fetch from API if state is not available
+      const fetchProduct = async () => {
+        try {
+          const response = await axios.get(`http://localhost:5000/addchickenproduct/chicken/${id}`);
+          setEditedProduct(response.data);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching product:", error);
+        }
+      };
+      fetchProduct();
+    }
+  }, [id, productState]);
 
   // Handle input changes
   const handleChange = (e) => {
@@ -55,9 +60,9 @@ const EditChickenProduct = () => {
   // Handle form submission (Update product)
   const handleUpdate = async () => {
     try {
-      await axios.put(`http://localhost:5000/addchickenproduct/chicken/${id}`, editedProduct);
+      await axios.put(`http://localhost:5000/addchickenproduct/addchickenproduct/${id}`, editedProduct);
       alert("Product updated successfully!");
-      navigate("/admin/chicken-products");
+      navigate("/adminchikenlisting");
     } catch (error) {
       console.error("Failed to update product:", error);
       setError("Error updating product. Please try again.");
@@ -68,9 +73,9 @@ const EditChickenProduct = () => {
   const handleRemove = async () => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       try {
-        await axios.delete(`http://localhost:5000/addchickenproduct/chicken/${id}`);
+        await axios.delete(`http://localhost:5000/addchickenproduct/addchickenproduct/${id}`);
         alert("Product deleted successfully!");
-        navigate("/admin/chicken-products");
+        navigate("/adminchikenlisting");
       } catch (error) {
         console.error("Failed to delete product:", error);
         setError("Error deleting product. Please try again.");
@@ -117,7 +122,7 @@ const EditChickenProduct = () => {
               <button type="button" onClick={handleRemove} className="remove-btn">
                 Delete Product
               </button>
-              <button type="button" onClick={() => navigate("/admin/chicken-products")} className="cancel-btn">
+              <button type="button" onClick={() => navigate("/adminchikenlisting")} className="cancel-btn">
                 Cancel
               </button>
             </div>

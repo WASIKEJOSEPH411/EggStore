@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import TopBar from "../TopBar/TopBar";
 import "./AdminChickenListing.css"
@@ -7,6 +8,12 @@ const AdminChickenListing = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+
+  const navigate = useNavigate(); // Hook to navigate
+
+  const handleEdit = (product) => {
+    navigate(`/editchickenproduct/${product._id}`, { state: { product } }); // Pass state
+  };
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -54,7 +61,7 @@ const AdminChickenListing = () => {
                   <h3>{product.name}</h3>
                   <p className="price">KES {product.price} per kg</p>
                   <p>{product.description}</p>
-                  <button className="product-btn">Order Now</button>
+                  <button  onClick={() => handleEdit(product)} className="product-btn">Edit</button>
                 </div>
               ))
             )}
