@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import './AdminTopBar.css'; // Import CSS for styling
+import { FiMenu, FiX } from "react-icons/fi"; // Import icons for the menu toggle
+import './AdminTopBar.css';
 
 const AdminTopBar = () => {
-  const navigate = useNavigate(); // React Router hook for navigation
+  const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false); // State to toggle menu
 
   return (
     <div className="admin-topbar">
@@ -14,15 +16,24 @@ const AdminTopBar = () => {
         <h2>Admin Panel</h2>
       </div>
 
-      <nav className="admin-nav">
-        <Link to="/addchickenproduct">Add Chicken Product</Link>
-        <Link to="/adddrinks">Add Drinks</Link>
-        <Link to="/addgradeegg">Add Grade Egg</Link>
-        <Link to="/addkienyejiegg">Add Kienyeji Egg</Link>
-        <Link to="/editchickenproduct">Edit Chicken Product</Link>
-        <Link to="/editdrinks">Edit Drinks</Link>
-        <Link to="/editgradeegg">Edit Grade Egg</Link>
-        <Link to="/editkienyejiegg">Edit Kienyeji Egg</Link>
+      {/* Menu Icon for Small Screens */}
+      <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+        {menuOpen ? <FiX /> : <FiMenu />}
+      </button>
+
+      {/* Navigation Links */}
+      <nav className={`admin-nav ${menuOpen ? "open" : ""}`}>
+        <Link to="/addchickenproduct" onClick={() => setMenuOpen(false)}>Add Chicken Product</Link>
+        <Link to="/adddrinks" onClick={() => setMenuOpen(false)}>Add Drinks</Link>
+        <Link to="/addgradeegg" onClick={() => setMenuOpen(false)}>Add Grade Egg</Link>
+        <Link to="/addkienyejiegg" onClick={() => setMenuOpen(false)}>Add Kienyeji Egg</Link>
+        <Link to="/editchickenproduct" onClick={() => setMenuOpen(false)}>Edit Chicken Product</Link>
+        <Link to="/editdrinks" onClick={() => setMenuOpen(false)}>Edit Drinks</Link>
+        <Link to="/editgradeegg" onClick={() => setMenuOpen(false)}>Edit Grade Egg</Link>
+        <Link to="/editkienyejiegg" onClick={() => setMenuOpen(false)}>Edit Kienyeji Egg</Link>
+
+
+        <Link to="/adminchickenlisting" onClick={() => setMenuOpen(false)}>AdminChickenListing</Link>
       </nav>
     </div>
   );

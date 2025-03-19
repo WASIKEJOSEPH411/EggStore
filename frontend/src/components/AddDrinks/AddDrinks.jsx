@@ -40,7 +40,7 @@ const AddDrinks = () => {
     drinkData.append("image", formData.image);
 
     try {
-      await axios.post("http://localhost:4000/drinks/drink", drinkData, {
+      await axios.post("http://localhost:5000/drinks/drinks", drinkData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

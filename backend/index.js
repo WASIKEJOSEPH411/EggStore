@@ -23,8 +23,9 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-// Serve uploaded images
-app.use("/uploads", express.static("uploads"));
+// Serve uploaded images statically
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // API Routes
 app.use("/admin", AdminRouter);
@@ -33,15 +34,23 @@ app.use("/drinks", DrinksRouter);
 app.use("/gradeegg", GradeEggRouter);
 app.use("/kienyejiegg", KienyejiEggRouter);
 
+// Root route
+app.get("/", (req, res) => {
+  res.send("Welcome to the Egg Grading System API!");
+});
+
 const PORT = process.env.PORT || 5000;
 
 // Database Connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI, { 
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
+})
   .then(() => {
-    console.log("✅ Connected to MongoDB");
-    app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
+    console.log("Connected to MongoDB");
+    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
   })
   .catch((error) => {
-    console.error("❌ Database connection error:", error);
+    console.error("Database connection error:", error);
     process.exit(1);
   });

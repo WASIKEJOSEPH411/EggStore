@@ -15,7 +15,7 @@ const AddChickenProduct = () => {
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Handle text input changes
+  // Handle text input change
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -33,7 +33,7 @@ const AddChickenProduct = () => {
 
     // Check if image is selected
     if (!formData.image) {
-      setMessage("❌ Please select an image.");
+      setMessage(" Please select an image.");
       setLoading(false);
       return;
     }
@@ -48,17 +48,17 @@ const AddChickenProduct = () => {
       formDataToSend.append("category", "Chicken"); // Example category
       formDataToSend.append("image", formData.image);
 
-      console.log("📤 Sending FormData:", Object.fromEntries(formDataToSend));
+      console.log(" Sending FormData:", Object.fromEntries(formDataToSend));
 
       await axios.post("http://localhost:5000/addchickenproduct/addchickenproduct", formDataToSend, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      setMessage("✅ Chicken product added successfully!");
+      setMessage("Chicken product added successfully!");
       setFormData({ name: "", price: "", quantity: "", description: "", image: null });
     } catch (error) {
-      console.error("❌ Error adding chicken product:", error.response?.data || error.message);
-      setMessage("❌ Error adding chicken product. Try again.");
+      console.error(" Error adding chicken product:", error.response?.data || error.message);
+      setMessage(" Error adding chicken product. Try again.");
     } finally {
       setLoading(false);
     }

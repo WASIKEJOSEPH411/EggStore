@@ -1,3 +1,4 @@
+/* 🔹 General Styling */
 .admin-topbar {
   background-color: #ff7b00;
   color: white;
@@ -5,14 +6,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  position: relative;
 }
 
-/* Style for the Go Back button */
+/* 🔸 Go Back Button */
 .go-back-btn {
   background-color: white;
   color: #ff7b00;
   border: none;
-  padding: 5px 15px;
+  padding: 8px 15px;
   font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
@@ -25,11 +28,13 @@
   color: #d46300;
 }
 
+/* 🔹 Admin Title */
 .admin-title h2 {
   margin: 0;
   font-size: 1.5rem;
 }
 
+/* 🔹 Navigation Links */
 .admin-nav {
   display: flex;
   gap: 15px;
@@ -46,4 +51,39 @@
 
 .admin-nav a:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* 📱 Responsive Design for Small Screens */
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.8rem;
+    cursor: pointer;
+  }
+
+  .admin-nav {
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: #ff7b00;
+    width: 100%;
+    text-align: center;
+    padding: 10px 0;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .admin-nav.open {
+    display: flex;
+  }
+
+  .admin-nav a {
+    display: block;
+    padding: 10px;
+    font-size: 1rem;
+  }
 }

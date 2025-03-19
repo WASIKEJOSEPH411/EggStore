@@ -9,7 +9,7 @@ const Drinks = () => {
   useEffect(() => {
     const fetchDrinks = async () => {
       try {
-        const response = await axios.get("http://localhost:4000/drinks/drinks");
+        const response = await axios.get("http://localhost:5000/drinks/drinks");
         setDrinks(response.data);
       } catch (error) {
         console.error("Error fetching drinks:", error);
@@ -27,7 +27,7 @@ const Drinks = () => {
         <div className="drinks-list">
           {drinks.map((drink) => (
             <div className="drink-card" key={drink._id}>
-              <img src={drink.img} alt={drink.name} />
+              <img src={`http://localhost:5000${drink.img}`} alt={drink.name} />
               <h3>{drink.name}</h3>
               <p>{drink.description}</p>
               <p className="price">Price: KES {drink.price}</p>

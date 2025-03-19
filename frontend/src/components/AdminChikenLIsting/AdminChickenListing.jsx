@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TopBar from "../TopBar/TopBar";
-import "./ChickenProduct.css";
+import "./AdminChickenListing.css"
 
-const ChickenProduct = () => {
+const AdminChickenListing = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -65,4 +65,4 @@ const ChickenProduct = () => {
   );
 };
 
-export default ChickenProduct;
+export default AdminChickenListing;

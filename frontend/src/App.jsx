@@ -17,6 +17,9 @@ import KienyejiEgg from './components/KienyejiEgg/KienyejiEgg';
 import Admin from './components/Admin/Admin';
 import AdminLogin from './components/AdminLogin/AdminLogin';
 
+
+import AdminChickenListing from './components/AdminChikenLIsting/AdminChickenListing';
+
 function App() {
   return (
     <Router>
@@ -36,6 +39,10 @@ function App() {
         <Route path="/kienyejiegg" element={<KienyejiEgg/>}/>
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin-login" element={<AdminLogin/>}/>
+
+        <Route path="/adminchikenlisting" element={<AdminChickenListing/>}/>
+
+        
       </Routes>
     </Router>
   );

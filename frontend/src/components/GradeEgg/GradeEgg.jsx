@@ -1,22 +1,47 @@
-import React from "react";
-import TopBar from "../TopBar/TopBar"; // Ensure the correct path to TopBar component
-import "./Grade.css"; // Ensure you have a CSS file for styling
-
-// Import Egg Image
-import gradeEgg from "../../assets/gradeegg.jpg"; // Make sure the image exists in this path
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import TopBar from "../TopBar/TopBar";
+import "./Grade.css";
 
 const GradeEgg = () => {
+  const [gradeEggs, setGradeEggs] = useState([]);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchGradeEggs = async () => {
+      try {
+        const response = await axios.get("http://localhost:5000/gradeegg/gradeeggs");
+        setGradeEggs(response.data);
+      } catch (error) {
+        setError(`Failed to load Grade Eggs: ${error.message}`);
+      }
+    };
+
+    fetchGradeEggs();
+  }, []);
+
   return (
     <div>
-      <TopBar /> {/* Include TopBar for navigation */}
+      <TopBar />
       <div className="grade-egg-section">
         <h2>Grade A Eggs</h2>
-        <div className="egg-card">
-          <img src={gradeEgg} alt="Grade A Eggs" />
-          <h3>Grade A Eggs - Per Tray</h3>
-          <p>High-quality, fresh Grade A eggs perfect for breakfast and baking.</p>
-          <p className="price">KSh 450 per tray</p>
-          <button className="egg-btn">Order Now</button>
+
+        {error && <p className="error-message">{error}</p>}
+
+        <div className="egg-list">
+          {gradeEggs.length > 0 ? (
+            gradeEggs.map((egg) => (
+              <div key={egg._id} className="egg-card">
+                <img src={egg.imageUrl} alt={egg.name} />
+                <h3>{egg.name}</h3>
+                <p>{egg.description}</p>
+                <p className="price">KSh {egg.price} per tray</p>
+                <button className="egg-btn">Order Now</button>
+              </div>
+            ))
+          ) : (
+            <p>Loading grade eggs...</p>
+          )}
         </div>
       </div>
     </div>

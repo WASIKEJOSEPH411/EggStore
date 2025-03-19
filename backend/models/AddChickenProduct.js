@@ -17,10 +17,10 @@ const ChickenProductSchema = new mongoose.Schema(
     quantity: { type: Number, required: true },
     description: { type: String, default: "" },
   },
-  { timestamps: true } // ✅ Adds createdAt & updatedAt fields
+  { timestamps: true } //  Adds createdAt & updatedAt fields
 );
 
-// Create and export the model
+// Create and export the mode
 const ChickenProduct = mongoose.model("ChickenProduct", ChickenProductSchema);
 
-export default ChickenProduct; // ✅ Correct export
+export default ChickenProduct; //  Correct export

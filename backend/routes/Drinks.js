@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Get all drinks
-router.get("/", async (req, res) => {
+router.get("/drinks", async (req, res) => {
   try {
     const drinks = await Drink.find();
     res.status(200).json(drinks);
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
 });
 
 // Get single drink
-router.get("/drink", async (req, res) => {
+router.get("/drinks/:id", async (req, res) => {
   try {
     const drink = await Drink.findById(req.params.id);
     if (!drink) return res.status(404).json({ message: "Drink not found" });
@@ -36,6 +36,7 @@ router.get("/drink", async (req, res) => {
 // Add a new drink with image upload
 router.post("/drinks", upload.single("image"), async (req, res) => {
   try {
+    console.log("Uploaded file:", req.file); // Debugging
     const { name, price, quantity, description } = req.body;
     const newDrink = new Drink({
       name,
@@ -53,7 +54,7 @@ router.post("/drinks", upload.single("image"), async (req, res) => {
 });
 
 // Update a drink
-router.put("/:id", async (req, res) => {
+router.put("/drinks", async (req, res) => {
   try {
     const updatedDrink = await Drink.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedDrink) return res.status(404).json({ message: "Drink not found" });
@@ -64,7 +65,7 @@ router.put("/:id", async (req, res) => {
 });
 
 // Delete a drink
-router.delete("/:id", async (req, res) => {
+router.delete("/drinks", async (req, res) => {
   try {
     const deletedDrink = await Drink.findByIdAndDelete(req.params.id);
     if (!deletedDrink) return res.status(404).json({ message: "Drink not found" });
