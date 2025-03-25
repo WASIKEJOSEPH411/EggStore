@@ -10,18 +10,20 @@ const OrderSchema = new mongoose.Schema(
     },
     items: [
       {
-        productId: { type: mongoose.Schema.Types.ObjectId, ref: "Product", required: true },
+        productId: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Product" },
         name: { type: String, required: true },
         quantity: { type: Number, required: true, min: 1 },
-        price: { type: Number, required: true }
+        price: { type: Number, required: true, min: 0 },
+        image: { type: String } // Optional image for product preview
       }
     ],
-    total: { type: Number, required: true },
+    total: { type: Number, required: true, min: 0 },
     status: {
       type: String,
       enum: ["Pending", "Processing", "Completed", "Cancelled"],
       default: "Pending"
-    }
+    },
+    notes: { type: String, default: "" }, // Optional field for special instructions
   },
   { timestamps: true }
 );

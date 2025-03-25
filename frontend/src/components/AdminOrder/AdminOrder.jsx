@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import "./AdminOrder.css"
+import "./AdminOrder.css";
 import AdminTopBar from "../AdminTopBar/AdminTopBar";
 
 const AdminOrder = () => {
@@ -26,7 +26,8 @@ const AdminOrder = () => {
 
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/order/orders${orderId}`, { status: newStatus });
+      await axios.put(`http://localhost:5000/order/orders/${orderId}/status`, { status: newStatus });
+
       setOrders(orders.map(order => order._id === orderId ? { ...order, status: newStatus } : order));
     } catch (err) {
       console.error("Error updating order status:", err);
@@ -36,11 +37,15 @@ const AdminOrder = () => {
 
   return (
     <div className="admin-order-container">
-        <AdminTopBar/>
+      <AdminTopBar />
       <h2>Admin Order Management</h2>
 
       {error && <p className="error">{error}</p>}
-      {loading ? <p>Loading orders...</p> : orders.length === 0 ? <p>No orders available.</p> : (
+      {loading ? (
+        <p>Loading orders...</p>
+      ) : orders.length === 0 ? (
+        <p>No orders available.</p>
+      ) : (
         <table className="order-table">
           <thead>
             <tr>

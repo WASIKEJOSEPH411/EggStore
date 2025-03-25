@@ -6,22 +6,25 @@ import "./Order.css";
 
 const Order = () => {
   const [cart, setCart] = useState([]);
-  const [customer, setCustomer] = useState({ name: "", phone: "" });
+  const [customer, setCustomer] = useState({ 
+    name: "", 
+    phone: "",
+    email: "",
+    address: ""
+  });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const navigate = useNavigate();
 
-  // Load cart from local storage on component mount
   useEffect(() => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
     setCart(savedCart);
   }, []);
 
-  // Kenyan Phone Number Validation
   const isValidPhoneNumber = (phone) => /^(\+254|0)7\d{8}$/.test(phone);
+  const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  // Clear Cart
   const clearCart = () => {
     if (cart.length === 0) {
       setError("Cart is already empty.");
@@ -32,14 +35,13 @@ const Order = () => {
     setSuccessMessage("Cart cleared successfully!");
   };
 
-  // Handle Order Placement
   const handleOrder = async () => {
     setError("");
     setSuccessMessage("");
 
     // Validate customer details
-    if (!customer.name || !customer.phone) {
-      setError("Please enter your name and phone number.");
+    if (!customer.name || !customer.phone || !customer.email || !customer.address) {
+      setError("Please fill in all customer details.");
       return;
     }
 
@@ -48,28 +50,38 @@ const Order = () => {
       return;
     }
 
+    if (!isValidEmail(customer.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
     if (cart.length === 0) {
       setError("Your cart is empty.");
       return;
     }
+
+    // Ensure each cart item has a productId
+    const itemsWithProductId = cart.map(item => ({
+      ...item,
+      productId: item._id || item.id 
+    }));
 
     setLoading(true);
 
     try {
       const orderData = {
         customer,
-        items: cart,
+        items: itemsWithProductId,
         total: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
       };
 
-      // POST request to create the order
-      await axios.post("http://localhost:5000/order/orders", orderData);
+       await axios.post("http://localhost:5000/order/orders", orderData);
       setSuccessMessage("Order placed successfully!");
-      clearCart(); // Clear cart after successful order
+      clearCart();
 
-      setTimeout(() => navigate("/order-confirmation"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
-      setError("Failed to place order. Please try again.");
+      setError(err.response?.data?.message || "Failed to place order. Please try again.");
       console.error("Order error:", err);
     } finally {
       setLoading(false);
@@ -90,12 +102,28 @@ const Order = () => {
           placeholder="Your Name"
           value={customer.name}
           onChange={(e) => setCustomer({ ...customer, name: e.target.value })}
+          required
         />
         <input
           type="tel"
-          placeholder="Your Phone Number"
+          placeholder="Your Phone Number (e.g., 0712345678)"
           value={customer.phone}
           onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
+          required
+        />
+        <input
+          type="email"
+          placeholder="Your Email"
+          value={customer.email}
+          onChange={(e) => setCustomer({ ...customer, email: e.target.value })}
+          required
+        />
+        <input
+          type="text"
+          placeholder="Your Delivery Address"
+          value={customer.address}
+          onChange={(e) => setCustomer({ ...customer, address: e.target.value })}
+          required
         />
       </div>
 

@@ -1,15 +1,29 @@
 import express from "express";
-import Order from "../models/order.js"; // Ensure the file name matches
+import Order from "../models/order.js";
 
 const router = express.Router();
 
-// ✅ Create an Order
+// ✅ Create a New Order
 router.post("/orders", async (req, res) => {
   try {
     const { customer, items, total } = req.body;
 
-    if (!customer || !items || items.length === 0) {
-      return res.status(400).json({ message: "Invalid order data" });
+    if (!customer || !items || !total) {
+      return res.status(400).json({ message: "Customer, items, and total are required" });
+    }
+
+    if (!customer.name || !customer.email || !customer.phone || !customer.address) {
+      return res.status(400).json({ message: "All customer details are required" });
+    }
+
+    if (!Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: "Items must be a non-empty array" });
+    }
+
+    for (const item of items) {
+      if (!item.productId || !item.name || !item.quantity || !item.price) {
+        return res.status(400).json({ message: "Each item must have productId, name, quantity, and price" });
+      }
     }
 
     const newOrder = new Order({

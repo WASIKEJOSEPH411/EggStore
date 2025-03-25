@@ -1,99 +1,93 @@
-/* Make Top Bar Full Width */
+/* AdminOrder.css */
+
+/* Full-width Top Bar */
 .admin-topbar {
   width: 100%;
-  background-color: #fff; /* Keep the original white background */
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 20px;
+  background: white;
+  color: white;
+  padding: 15px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  border-bottom: 1px solid #ddd; /* Light border for separation */
 }
 
-/* Go Back Button */
-.go-back-btn {
-  background: none;
-  border: none;
-  font-size: 16px;
-  cursor: pointer;
-  color: black;
-}
-
-/* Title */
-.admin-title {
-  font-size: 20px;
-  font-weight: bold;
-  flex-grow: 1;
-  text-align: center;
-}
-
-/* Menu Toggle Button (Visible on Small Screens) */
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: black;
-}
-
-/* Navigation */
-.admin-nav {
-  display: flex;
-  gap: 15px;
-}
-
-/* Navigation Links */
-.admin-nav a {
-  text-decoration: none;
-  color: black;
-  font-weight: bold;
-  padding: 5px 10px;
-  transition: 0.3s;
-}
-
-.admin-nav a:hover {
-  background: rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
-}
-
-/* Responsive Design for Small Screens */
-@media screen and (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-  }
-
-  .admin-nav {
-    display: none;
-    flex-direction: column;
-    position: absolute;
-    top: 50px;
-    right: 10px;
-    background: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-
-  .admin-nav.open {
-    display: flex;
-  }
-
-  .admin-nav a {
-    display: block;
-    padding: 10px;
-    text-align: left;
-  }
-}
-
-/* Ensure Content Below Top Bar is Visible */
+/* Main Container */
 .admin-order-container {
-  margin-top: 70px; /* Adjust for fixed top bar */
+  max-width: 1200px;
+  margin: 80px auto 20px; /* Push content below fixed top bar */
   padding: 20px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow-x: auto; /* Prevents table overflow */
+}
+
+/* Error Message */
+.error {
+  color: red;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Order Table */
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.order-table th, 
+.order-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: left;
+}
+
+.order-table th {
+  background: #f4f4f4;
+  font-weight: bold;
+}
+
+/* Dropdown Styling */
+.order-table select {
+  padding: 5px;
+  border: 1px solid #ccc;
+  background: white;
+  cursor: pointer;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .admin-topbar {
+    font-size: 18px;
+    padding: 10px;
+  }
+
+  .admin-order-container {
+    margin-top: 70px; /* Adjust spacing for mobile */
+    padding: 10px;
+  }
+
+  .order-table {
+    font-size: 14px;
+  }
+
+  .order-table th, 
+  .order-table td {
+    padding: 8px;
+  }
+}
+
+/* Mobile Friendly - Scrollable Table */
+@media (max-width: 600px) {
+  .order-table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
 }
