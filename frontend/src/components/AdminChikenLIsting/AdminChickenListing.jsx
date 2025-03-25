@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import TopBar from "../TopBar/TopBar";
+
 import "./AdminChickenListing.css"
+import AdminTopBar from "../AdminTopBar/AdminTopBar";
 
 const AdminChickenListing = () => {
   const [products, setProducts] = useState([]);
@@ -33,7 +34,7 @@ const AdminChickenListing = () => {
 
   return (
     <div>
-      <TopBar />
+     <AdminTopBar/>
       <div className="chicken-product">
         <h2>Our Chicken Products</h2>
 

@@ -1,47 +1,119 @@
-.edit-drinks-container {
-    max-width: 500px;
-    margin: 20px auto;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+/* Full-screen center alignment */
+.edit-drink-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #f4f4f4; /* Light background */
+}
+
+/* Centered form card */
+.edit-form-card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  width: 400px; /* Fixed width */
+}
+
+/* Title */
+h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+/* Form styling */
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Labels */
+label {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+/* Inputs and Select */
+input,
+select,
+textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+  font-size: 16px;
+}
+
+textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* Button group */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+/* Buttons */
+button {
+  flex: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin: 0 5px;
+}
+
+/* Save Button */
+.save-btn {
+  background-color: #28a745;
+  color: white;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+}
+
+/* Remove Button */
+.remove-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.remove-btn:hover {
+  background-color: #c82333;
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background-color: #6c757d;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background-color: #5a6268;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 480px) {
+  .edit-form-card {
+    width: 90%;
   }
-  
-  h2 {
-    text-align: center;
-    color: #009688;
-    margin-bottom: 15px;
-  }
-  
-  .edit-drinks-form {
-    display: flex;
+
+  .button-group {
     flex-direction: column;
   }
-  
-  .edit-drinks-form label {
-    font-weight: bold;
-    margin-bottom: 5px;
+
+  button {
+    margin-bottom: 10px;
   }
-  
-  .edit-drinks-form input,
-  .edit-drinks-form textarea {
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .edit-btn {
-    background-color: #009688;
-    color: white;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s ease-in-out;
-  }
-  
-  .edit-btn:hover {
-    background-color: #00796b;
-  }
-  
+}

@@ -30,7 +30,13 @@ const AdminTopBar = () => {
         <Link to="/editdrinks" onClick={() => setMenuOpen(false)}>Edit Drinks</Link>
         <Link to="/editgradeegg" onClick={() => setMenuOpen(false)}>Edit Grade Egg</Link>
         <Link to="/editkienyejiegg" onClick={() => setMenuOpen(false)}>Edit Kienyeji Egg</Link>
+
         <Link to="/adminchikenlisting" onClick={() => setMenuOpen(false)}>AdminChickenListing</Link>
+        <Link to="/admindrinklist" onClick={() => setMenuOpen(false)}>AdminDrinkList</Link>
+        <Link to="/admingradeegglist" onClick={() => setMenuOpen(false)}>AdminGradeEggList</Link>
+        <Link to="/adminKienyejiegglist" onClick={() => setMenuOpen(false)}>AdminKienyejiEggList</Link>
+
+        <Link to="/adminorder" onClick={() => setMenuOpen(false)}>AdminOrder</Link>
       </nav>
     </div>
   );

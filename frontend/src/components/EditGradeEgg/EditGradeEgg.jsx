@@ -1,61 +1,117 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import AdminTopBar from "../AdminTopBar/AdminTopBar";
-import "./EditGradeEgg.css"; // Import CSS file
+import axios from "axios";
+import "./EditGradeEgg.css";
 
 const EditGradeEgg = () => {
-  const [formData, setFormData] = useState({
-    price: "",
-    quantity: "",
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const eggState = location.state?.egg;
+
+  const [loading, setLoading] = useState(true);
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [error, setError] = useState("");
+  const [editedEgg, setEditedEgg] = useState({
+    name: "",
     description: "",
+    price: "",
   });
 
-  // Handle input changes
+  useEffect(() => {
+    if (eggState) {
+      setEditedEgg({
+        name: eggState.name || "",
+        description: eggState.description || "",
+        price: eggState.price || "",
+      });
+      setLoading(false);
+    } else {
+      const fetchEgg = async () => {
+        try {
+          const response = await axios.get(`http://localhost:5000/gradeeggs/${id}`);
+          setEditedEgg(response.data);
+        } catch (error) {
+          setError(error.response?.data?.message || "Error fetching egg details.");
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchEgg();
+    }
+  }, [id, eggState]);
+
   const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setEditedEgg((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Handle form submission
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Updated Grade Egg Data:", formData);
-    // Add API request logic to update grade egg details in the backend
+  const handleUpdate = async () => {
+    setIsUpdating(true);
+    setError("");
+    try {
+      await axios.put(`http://localhost:5000/gradeeggs/${id}`, editedEgg);
+      alert("Egg details updated successfully!");
+      navigate("/admingradeegglist");
+    } catch (error) {
+      setError(error.response?.data?.message || "Error updating egg. Please try again.");
+    } finally {
+      setIsUpdating(false);
+    }
+  };
+
+  const handleRemove = async () => {
+    if (!window.confirm("Are you sure you want to delete this egg?")) return;
+
+    setIsDeleting(true);
+    setError("");
+    try {
+      await axios.delete(`http://localhost:5000/gradeeggs/${id}`);
+      alert("Egg deleted successfully!");
+      navigate("/admingradeegglist");
+    } catch (error) {
+      setError(error.response?.data?.message || "Error deleting egg. Please try again.");
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   return (
-    <div>
+    <div className="edit-grade-egg">
       <AdminTopBar />
-      <div className="edit-grade-egg-container">
-        <h2>Edit Grade A Egg</h2>
-        <form onSubmit={handleSubmit} className="edit-grade-egg-form">
-          <label>Price per Tray (KSh):</label>
-          <input
-            type="number"
-            name="price"
-            value={formData.price}
-            onChange={handleChange}
-            required
-          />
+      {loading ? (
+        <p>Loading...</p>
+      ) : error ? (
+        <p className="error">{error}</p>
+      ) : (
+        <div className="edit-form-container">
+          <h2>Edit Grade Egg</h2>
+          <form className="edit-form">
+            <label>Name:</label>
+            <input type="text" name="name" value={editedEgg.name} onChange={handleChange} />
 
-          <label>Quantity (Trays):</label>
-          <input
-            type="number"
-            name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-            required
-          />
+            <label>Description:</label>
+            <textarea name="description" value={editedEgg.description} onChange={handleChange}></textarea>
 
-          <label>Description:</label>
-          <textarea
-            name="description"
-            value={formData.description}
-            onChange={handleChange}
-            required
-          ></textarea>
+            <label>Price (KSh):</label>
+            <input type="number" name="price" value={editedEgg.price} onChange={handleChange} />
 
-          <button type="submit" className="edit-btn">Update Grade A Eggs</button>
-        </form>
-      </div>
+            <div className="button-group">
+              <button type="button" onClick={handleUpdate} className="save-btn" disabled={isUpdating}>
+                {isUpdating ? "Saving..." : "Save Changes"}
+              </button>
+              <button type="button" onClick={handleRemove} className="remove-btn" disabled={isDeleting}>
+                {isDeleting ? "Deleting..." : "Delete Egg"}
+              </button>
+              <button type="button" onClick={() => navigate("/admingradeegglist")} className="cancel-btn">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   );
 };

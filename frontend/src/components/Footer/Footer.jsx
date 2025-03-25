@@ -15,8 +15,8 @@ const Footer = () => {
         <div className="footer-section">
           <h3>Contact Us</h3>
           <p>📍 Carwash, Roysambu, near the Police Station</p>
-          <p>🛒 Shop Number: S31</p>
-          <p>📞 Call/WhatsApp: <a href="tel:+254711692522">0711 692 522</a></p>
+          <p>🛒 Shop Number: S6</p>
+          <p>📞 Call/WhatsApp: <a href="tel:+254711692522">0735935248</a></p>
         </div>
       </div>
 

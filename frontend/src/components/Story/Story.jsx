@@ -6,8 +6,9 @@ const Story = () => {
     <div className="story-container">
       <h2 className="story-title">Our Story</h2>
       <p className="story-text">
-        Welcome to Egg Store! We provide high-quality eggs, fresh chicken products, and refreshing drinks.
+        Welcome to Aliswa ProteinHub! We provide high-quality eggs, fresh chicken products, and refreshing drinks.
         Our mission is to deliver the best products to our customers with guaranteed freshness and quality.
+        Order number 0735935248 
       </p>
     </div>
   );

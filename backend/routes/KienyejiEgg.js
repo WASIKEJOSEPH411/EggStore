@@ -19,13 +19,10 @@ if (!fs.existsSync(uploadDir)) {
 
 // Multer storage configuration
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}-${file.originalname}`);
-  },
+  destination: (req, file, cb) => cb(null, uploadDir),
+  filename: (req, file, cb) => cb(null, `${Date.now()}-${file.originalname}`),
 });
+
 const upload = multer({ storage });
 
 // ✅ GET all kienyeji eggs
@@ -59,10 +56,9 @@ router.post("/kienyejiegg", upload.single("image"), async (req, res) => {
     }
 
     const imageUrl = `/uploads/${req.file.filename}`;
-
     const newKienyejiEgg = new KienyejiEgg({ name, price, quantity, description, imageUrl });
-    await newKienyejiEgg.save();
 
+    await newKienyejiEgg.save();
     res.status(201).json(newKienyejiEgg);
   } catch (error) {
     res.status(500).json({ message: "Failed to add kienyeji egg", error });
@@ -70,13 +66,12 @@ router.post("/kienyejiegg", upload.single("image"), async (req, res) => {
 });
 
 // ✅ PUT - Update a kienyeji egg
-router.put("/:id", upload.single("image"), async (req, res) => {
+router.put("/kienyejiegg/:id", upload.single("image"), async (req, res) => {
   try {
     const kienyejiEgg = await KienyejiEgg.findById(req.params.id);
     if (!kienyejiEgg) return res.status(404).json({ message: "Kienyeji egg not found" });
 
     let updateData = req.body;
-
     if (req.file) {
       const oldImagePath = path.join(uploadDir, path.basename(kienyejiEgg.imageUrl));
       if (fs.existsSync(oldImagePath)) fs.unlinkSync(oldImagePath);
@@ -100,7 +95,6 @@ router.delete("/kienyejiegg/:id", async (req, res) => {
     const kienyejiEgg = await KienyejiEgg.findById(req.params.id);
     if (!kienyejiEgg) return res.status(404).json({ message: "Kienyeji egg not found" });
 
-    // Delete image file if it exists
     if (kienyejiEgg.imageUrl) {
       const imagePath = path.join(uploadDir, path.basename(kienyejiEgg.imageUrl));
       if (fs.existsSync(imagePath)) fs.unlinkSync(imagePath);

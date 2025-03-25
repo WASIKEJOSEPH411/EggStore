@@ -1,89 +1,98 @@
-/* 🔹 General Styling */
+/* Admin Top Bar Container */
 .admin-topbar {
-  background-color: #ff7b00;
-  color: white;
-  padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
-/* 🔸 Go Back Button */
+/* Go Back Button */
 .go-back-btn {
-  background-color: white;
-  color: #ff7b00;
+  background: none;
   border: none;
-  padding: 8px 15px;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
-  transition: background 0.3s, color 0.3s;
+  color: #333;
 }
 
-.go-back-btn:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-  color: #d46300;
+/* Title */
+.admin-title {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-/* 🔹 Admin Title */
-.admin-title h2 {
-  margin: 0;
-  font-size: 1.5rem;
+/* Menu Toggle Button (Visible Only on Small Screens) */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
 }
 
-/* 🔹 Navigation Links */
+/* Navigation */
 .admin-nav {
   display: flex;
   gap: 15px;
 }
 
+/* Navigation Links */
 .admin-nav a {
-  color: white;
   text-decoration: none;
-  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
   padding: 5px 10px;
-  border-radius: 5px;
-  transition: background 0.3s;
 }
 
-.admin-nav a:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* 📱 Responsive Design for Small Screens */
+/* Hide Menu on Small Screens by Default */
 @media screen and (max-width: 768px) {
   .menu-toggle {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 1.8rem;
-    cursor: pointer;
+    display: block;
   }
 
   .admin-nav {
-    display: none;
+    display: none; /* Hide navigation by default */
     flex-direction: column;
-    gap: 10px;
     position: absolute;
-    top: 100%;
-    right: 0;
-    background: #ff7b00;
-    width: 100%;
-    text-align: center;
-    padding: 10px 0;
+    top: 60px;
+    right: 10px;
+    background: white;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
   }
 
   .admin-nav.open {
-    display: flex;
+    display: flex; /* Show menu when open */
   }
 
   .admin-nav a {
     display: block;
     padding: 10px;
-    font-size: 1rem;
+    text-align: left;
   }
+}
+
+/* Add padding to the main content to ensure product heading is visible */
+.admin-content {
+  padding-top: 100px; /* Adjusted space to ensure visibility */
+}
+
+/* Ensure menu appears only on small screens */
+@media screen and (min-width: 769px) {
+  .admin-nav {
+    display: flex !important;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+}
+
+/* Additional spacing below top bar for better visibility */
+.product-heading {
+  margin-top: 20px;
 }

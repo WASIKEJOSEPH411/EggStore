@@ -54,7 +54,7 @@ router.post("/drinks", upload.single("image"), async (req, res) => {
 });
 
 // Update a drink
-router.put("/drinks", async (req, res) => {
+router.put("/drinks/:id", async (req, res) => {
   try {
     const updatedDrink = await Drink.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedDrink) return res.status(404).json({ message: "Drink not found" });
@@ -65,7 +65,7 @@ router.put("/drinks", async (req, res) => {
 });
 
 // Delete a drink
-router.delete("/drinks", async (req, res) => {
+router.delete("/drinks/:id", async (req, res) => {
   try {
     const deletedDrink = await Drink.findByIdAndDelete(req.params.id);
     if (!deletedDrink) return res.status(404).json({ message: "Drink not found" });
