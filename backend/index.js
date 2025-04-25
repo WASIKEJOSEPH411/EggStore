@@ -21,6 +21,7 @@ import DrinksRouter from "./routes/Drinks.js";
 import GradeEggRouter from "./routes/GradeEgg.js";
 import KienyejiEggRouter from "./routes/KienyejiEgg.js";
 import OrderRouter from "./routes/order.js";
+import MpesaRouter from "./routes/Mpesa.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -43,13 +44,21 @@ app.use("/drinks", DrinksRouter);
 app.use("/gradeegg", GradeEggRouter);
 app.use("/kienyejiegg", KienyejiEggRouter);
 app.use("/order", OrderRouter);
+app.use("/mpesa", MpesaRouter)
 
 // Root Route
 app.get("/", (req, res) => {
   res.send("Welcome to the Egg Grading System API!");
 });
 
-// Database Connection
+app.use(cors({
+  origin: CLIENT_URL,
+  credentials: true,
+  optionsSuccessStatus:200,
+  allowedHeaders:['Content-Type', 'Authorization']
+}))
+
+// Database Connectio
 mongoose
   .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {

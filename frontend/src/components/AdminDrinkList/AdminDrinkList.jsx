@@ -7,7 +7,7 @@ import AdminTopBar from "../AdminTopBar/AdminTopBar";
 
 const AdminDrinkList = () => {
   const [drinks, setDrinks] = useState([]);
-  const navigate = useNavigate(); // Initialize navigation
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDrinks = async () => {
@@ -23,26 +23,40 @@ const AdminDrinkList = () => {
   }, []);
 
   const handleEdit = (drink) => {
-    navigate(`/editdrinkproduct/${drink._id}`, { state: { drink } }); // Navigate to edit page
+    navigate(`/editdrinkproduct/${drink._id}`, { state: { drink } });
   };
 
   return (
-    <div>
+    <div className="page-wrapper">
       <AdminTopBar />
-      <div className="drinks-section">
-        <h2>Our Refreshing Drinks</h2>
+      <div className="admin-drink-container">
+        <div className="header">
+          <h2>Our Refreshing Drinks</h2>
+          {/* Optional: add a search bar or filter here */}
+        </div>
         <div className="drinks-list">
-          {drinks.map((drink) => (
-            <div className="drink-card" key={drink._id}>
-              <img src={`http://localhost:5000${drink.img}`} alt={drink.name} />
-              <h3>{drink.name}</h3>
-              <p>{drink.description}</p>
-              <p className="price">Price: KES {drink.price}</p>
-              <button onClick={() => handleEdit(drink)} className="product-btn">
-                Edit
-              </button>
-            </div>
-          ))}
+          {drinks.length > 0 ? (
+            drinks.map((drink) => (
+              <div className="drink-card" key={drink._id}>
+                <img
+                  src={`http://localhost:5000${drink.img}`}
+                  alt={drink.name}
+                  className="drink-image"
+                />
+                <h3>{drink.name}</h3>
+                <p className="drink-description">{drink.description}</p>
+                <p className="drink-price">Price: KES {drink.price}</p>
+                <button
+                  onClick={() => handleEdit(drink)}
+                  className="edit-btn"
+                >
+                  Edit
+                </button>
+              </div>
+            ))
+          ) : (
+            <p className="no-results">No drinks found.</p>
+          )}
         </div>
       </div>
     </div>

@@ -1,8 +1,10 @@
 .chicken-product {
-    text-align: center;
-    padding: 50px 20px;
-    background-color: #f9f9f9;
-  }
+  text-align: center;
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  margin-top: 80px; /* Added spacing from top */
+}
+
   
   /* Heading Styles */
   h2 {

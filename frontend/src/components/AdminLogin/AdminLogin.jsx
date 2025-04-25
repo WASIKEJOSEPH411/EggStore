@@ -10,7 +10,7 @@ const AdminLogin = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     // Add authentication logic here (Replace with actual backend call)
-    if (email === 'admin@gmail.com' && password === '123') {
+    if (email === 'superadmin@gmail.com' && password === 'wasike@123') {
       navigate('/admin'); // Redirect to admin dashboard after login
     } else {
       alert('Invalid credentials. Try again.');

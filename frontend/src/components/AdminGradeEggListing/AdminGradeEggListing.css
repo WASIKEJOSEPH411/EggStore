@@ -1,39 +1,39 @@
+/* Grade Egg Section */
 .grade-egg-section {
-    padding: 20px;
-  }
-  
-  .egg-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .egg-card {
-    border: 1px solid #ddd;
-    padding: 15px;
-    text-align: center;
-  }
-  
-  .egg-card img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-  }
-  
-  .price {
-    font-weight: bold;
-    color: #28a745;
-  }
-  
-  .edit-btn {
-    background-color: #007bff;
-    color: white;
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .edit-btn:hover {
-    background-color: #0056b3;
-  }
-  
+  padding: 20px;
+}
+
+.egg-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.egg-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.egg-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.price {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.edit-btn {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background-color: #0056b3;
+}

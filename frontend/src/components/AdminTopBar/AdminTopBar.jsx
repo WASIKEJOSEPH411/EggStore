@@ -5,7 +5,7 @@ import './AdminTopBar.css';
 
 const AdminTopBar = () => {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false); // State to toggle menu
+  const [menuOpen, setMenuOpen] = useState(false); // State to toggle men
 
   return (
     <div className="admin-topbar">

@@ -2,40 +2,48 @@
     text-align: center;
     padding: 40px;
     background-color: #f8f8f8;
-}
+  }
   
-.drinks-list {
+  /* Flex container centered */
+  .drinks-list {
     display: flex;
     justify-content: center;
+    align-items: center; /* vertically center if needed */
     gap: 20px;
     flex-wrap: wrap;
-}
+    max-width: 1200px;
+    margin: 0 auto; /* centers the whole flex container */
+  }
   
-.drink-card {
+  /* Card styling */
+  .drink-card {
     background: white;
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     max-width: 300px;
-}
+    width: 100%; /* ensures consistent sizing */
+  }
   
-.drink-card img {
+  /* Image styling */
+  .drink-card img {
     width: 100%;
     height: 200px;
     border-radius: 8px;
     object-fit: cover;
-}
-
-/* ✅ Price Styling */
-.price {
+  }
+  
+  /* Price Styling */
+  .price {
     font-size: 18px;
     font-weight: bold;
     color: #27ae60;
     margin: 10px 0;
-}
+  }
   
-.drink-btn {
+  /* Button styling */
+  .drink-btn {
     margin-top: 10px;
     padding: 10px 20px;
     background-color: #ff9800;
@@ -44,8 +52,9 @@
     font-size: 16px;
     cursor: pointer;
     border-radius: 5px;
-}
+  }
   
-.drink-btn:hover {
+  .drink-btn:hover {
     background-color: #e68900;
-}
+  }
+  

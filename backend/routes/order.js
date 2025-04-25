@@ -3,7 +3,7 @@ import Order from "../models/order.js";
 
 const router = express.Router();
 
-// ✅ Create a New Order
+// Create a New Order
 router.post("/orders", async (req, res) => {
   try {
     const { customer, items, total } = req.body;
@@ -41,7 +41,7 @@ router.post("/orders", async (req, res) => {
   }
 });
 
-// ✅ Get All Orders
+//  Get All Orders
 router.get("/orders", async (req, res) => {
   try {
     const orders = await Order.find().sort({ createdAt: -1 });
@@ -52,7 +52,7 @@ router.get("/orders", async (req, res) => {
   }
 });
 
-// ✅ Get a Single Order by ID
+//  Get a Single Order by ID
 router.get("/orders/:id", async (req, res) => {
   try {
     const order = await Order.findById(req.params.id);
@@ -66,7 +66,7 @@ router.get("/orders/:id", async (req, res) => {
   }
 });
 
-// ✅ Update Order Status
+//  Update Order Status
 router.put("/orders/:id/status", async (req, res) => {
   try {
     const { status } = req.body;
@@ -90,7 +90,7 @@ router.put("/orders/:id/status", async (req, res) => {
   }
 });
 
-// ✅ Delete an Order
+//  Delete an Order
 router.delete("/orders/:id", async (req, res) => {
   try {
     const deletedOrder = await Order.findByIdAndDelete(req.params.id);

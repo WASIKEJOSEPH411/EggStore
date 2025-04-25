@@ -1,9 +1,21 @@
+/* ✅ Page Wrapper - Adds top spacing below navbar */
+.page-wrapper {
+  padding-top: 60px; /* Adjust top spacing as needed */
+}
+
+/* ✅ Navbar spacing (if using a navbar class) */
+.navbar {
+  margin-bottom: 40px;
+}
+
+/* ✅ Admin Drink Section */
 .admin-drink-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto 20px auto; /* Bottom spacing only; top spacing handled by wrapper */
   padding: 20px;
 }
 
+/* ✅ Header styles */
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,6 +28,7 @@ h2 {
   color: #333;
 }
 
+/* ✅ Search bar styling */
 .search-bar {
   padding: 8px;
   border: 1px solid #ddd;
@@ -23,12 +36,14 @@ h2 {
   width: 200px;
 }
 
+/* ✅ Drinks list grid */
 .drinks-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
 }
 
+/* ✅ Individual drink card */
 .drink-card {
   background: #fff;
   border-radius: 10px;
@@ -36,6 +51,7 @@ h2 {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   transition: transform 0.2s ease-in-out;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .drink-card:hover {
@@ -75,8 +91,29 @@ h2 {
   background-color: #0056b3;
 }
 
+.edit-btn:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
+
+/* ✅ No results message */
 .no-results {
   text-align: center;
   font-size: 18px;
   color: #999;
+}
+
+/* ✅ Responsive adjustments */
+@media (max-width: 600px) {
+  .admin-drink-container {
+    padding: 10px;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }

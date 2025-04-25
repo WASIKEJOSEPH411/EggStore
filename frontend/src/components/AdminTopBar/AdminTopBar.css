@@ -6,7 +6,17 @@
   padding: 10px 20px;
   background-color: #fff;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  position: relative;
+  position: fixed; /* Keeps the navbar at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: 60px;
+}
+
+/* Ensure content is not hidden behind navbar */
+.admin-content {
+  padding-top: 80px; /* Adjust depending on navbar height */
 }
 
 /* Go Back Button */
@@ -39,7 +49,6 @@
   gap: 15px;
 }
 
-/* Navigation Links */
 .admin-nav a {
   text-decoration: none;
   color: #333;
@@ -47,14 +56,14 @@
   padding: 5px 10px;
 }
 
-/* Hide Menu on Small Screens by Default */
+/* Small screen adjustments */
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: block;
   }
 
   .admin-nav {
-    display: none; /* Hide navigation by default */
+    display: none;
     flex-direction: column;
     position: absolute;
     top: 60px;
@@ -66,7 +75,7 @@
   }
 
   .admin-nav.open {
-    display: flex; /* Show menu when open */
+    display: flex;
   }
 
   .admin-nav a {
@@ -76,12 +85,7 @@
   }
 }
 
-/* Add padding to the main content to ensure product heading is visible */
-.admin-content {
-  padding-top: 100px; /* Adjusted space to ensure visibility */
-}
-
-/* Ensure menu appears only on small screens */
+/* Large screen nav */
 @media screen and (min-width: 769px) {
   .admin-nav {
     display: flex !important;
@@ -92,7 +96,7 @@
   }
 }
 
-/* Additional spacing below top bar for better visibility */
+/* Product heading spacing */
 .product-heading {
   margin-top: 20px;
 }

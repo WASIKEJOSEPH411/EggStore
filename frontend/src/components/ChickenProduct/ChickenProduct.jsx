@@ -27,7 +27,7 @@ const ChickenProduct = () => {
     fetchProducts();
   }, []);
 
-  // ✅ Add to Cart Function (Prevents Duplicates & Updates Quantity)
+  //  Add to Cart Function (Prevents Duplicates & Updates Quantity)
   const handleAddToCart = (product) => {
     const existingItem = cart.find((item) => item._id === product._id);
 
@@ -46,7 +46,7 @@ const ChickenProduct = () => {
     alert(`${product.name} added to cart!`);
   };
 
-  // ✅ Navigate to Cart Page
+  //  Navigate to Cart Page
   const goToCart = () => {
     navigate("/order");
   };
@@ -57,12 +57,12 @@ const ChickenProduct = () => {
       <div className="chicken-product">
         <h2>Our Chicken Products</h2>
 
-        {/* ✅ View Cart Button (Shows Total Items in Cart) */}
+        {/*  View Cart Button (Shows Total Items in Cart) */}
         <button onClick={goToCart} className="cart-btn">
           View Cart ({cart.reduce((total, item) => total + item.quantity, 0)})
         </button>
 
-        {/* ✅ Handle Loading & Errors */}
+        {/*  Handle Loading & Errors */}
         {loading ? (
           <p>Loading products...</p>
         ) : error ? (
